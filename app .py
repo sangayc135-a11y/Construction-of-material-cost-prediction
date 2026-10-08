@@ -71,3 +71,34 @@ with tabs[3]:
     c2.metric("RMSE",f"{rmse:,.2f}")
     c3.metric("R²",f"{r2:.3f}")
     st.write(pd.DataFrame({"Actual":y_test.values,"Predicted":pred}))
+    import streamlit as st
+import matplotlib.pyplot as plt
+import pandas as pd
+
+def load_data():
+    # Example dataset (replace with your actual data)
+    data = pd.DataFrame({
+        "Material": ["Cement", "Steel", "Bricks", "Sand"],
+        "Cost": [5000, 12000, 3000, 2000]
+    })
+    return data
+
+# Load data
+df = load_data()
+
+st.title("Construction Material Cost Prediction")
+
+# Show data table
+st.write("### Dataset Preview")
+st.dataframe(df)
+
+# Create a bar chart
+fig, ax = plt.subplots()
+ax.bar(df["Material"], df["Cost"], color="skyblue")
+ax.set_xlabel("Material")
+ax.set_ylabel("Cost")
+ax.set_title("Material Cost Comparison")
+
+# Display chart in Streamlit
+st.pyplot(fig)
+
